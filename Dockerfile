@@ -40,8 +40,8 @@ RUN curl -fLO \
 RUN printf '%s\n' '#!/bin/bash' 'set -e' \
       'dist=${1:-/dist}' \
       'for pip in /usr/local/bin/pip${PLAT_PYVER:-3.*}; do' \
-      '  if [[ -n ${SDIST_PYPI} ]]; then' \
-      '    sdist=${SDIST_PYPI}' \
+      '  if [[ -n ${SDIST_SPEC} ]]; then' \
+      '    sdist=${SDIST_SPEC}' \
       '  else' \
       '    sdist=${dist}/${SDIST_FILE:-*.tar.gz}' \
       '  fi' \

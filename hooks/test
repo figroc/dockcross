@@ -1,0 +1,8 @@
+#!/bin/bash
+set -e
+
+docker run --rm \
+  -e PLAT_PYVER=3.6 \
+  -e SDIST_SPEC=s2geometry \
+  --entrypoint bash \
+  ${IMAGE_NAME} build-wheel-from-sdist
