@@ -45,7 +45,7 @@ RUN printf '%s\n' '#!/bin/bash' 'set -e' \
       '  else' \
       '    sdist=${dist}/${SDIST_FILE:-*.tar.gz}' \
       '  fi' \
-      '  ${pip} -v wheel ${sdist}' \
+      '  ${pip} -v --disable-pip-version-check wheel ${sdist}' \
       'done' \
       'for whl in *.whl; do' \
       '  auditwheel repair ${whl} \' \
