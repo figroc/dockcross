@@ -10,6 +10,7 @@ RUN yum install -y \
       libffi-devel \
       libxml2-devel \
       openssl-devel \
+      openssl-static \
       pcre-devel \
       zlib-devel && \
     yum clean all
