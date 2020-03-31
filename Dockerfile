@@ -31,9 +31,9 @@ RUN for py3 in /opt/python/cp3*/bin/python3; do \
       cd .. && rm -rf Python-${ver}* || exit 1; \
     done
 
-ENV WHEEL_VER=wheel-0.32.3-py2.py3-none-any.whl
+ENV WHEEL_VER=wheel-0.34.1-py2.py3-none-any.whl
 RUN curl -fLO \
-      https://files.pythonhosted.org/packages/ff/47/1dfa4795e24fd6f93d5d58602dd716c3f101cfd5a77cd9acbe519b44a0a9/${WHEEL_VER} && \
+      https://files.pythonhosted.org/packages/81/44/db78754a73d9a88c5bd1bb692b40004410970e88aa0c5dff20b57f231505/${WHEEL_VER} && \
     for pip in /usr/local/bin/pip3.*; do \
       ${pip} --no-cache-dir install --no-index ${WHEEL_VER} || exit 1; \
     done && rm -rf ${WHEEL_VER}
