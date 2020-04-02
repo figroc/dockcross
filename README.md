@@ -41,3 +41,14 @@ docker run --rm \
 > ```
 > PLAT_PYVER=3.6 SDIST_SPEC=s2geometry ./build.sh
 > ```
+
+## cmake
+
+As FindPython of cmake, the system config of pythons are not system-wide in this image. One have to set PYTHON_INCLUDE_DIRS and PYTHON_LIBRARIES from sysconfig package of the corresponding python version.
+
+You can call the cmake with `-DPYTHON_INCLUDE_DIRS=...` against a CMakeLists.txt containing following snippet:
+```
+if (NOT PYTHON_INCLUDE_DIRS)
+  find_package(PythonLibs REQUIRED)
+endif()
+```
