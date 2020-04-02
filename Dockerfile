@@ -22,8 +22,10 @@ RUN curl -fLO \
     ./autogen.sh && ./configure && make && make install && \
     cd .. && rm -rf *${SWIG_VER}*
 
-RUN printf '%s\n' '#!/bin/bash' 'set -e' '' 'platv=3*' \
-      'sdist=${1:-/dist}/${SDIST_FILE:-*.tar.gz}' \
+RUN printf '%s\n' '#!/bin/bash' 'set -e' '' \
+      'platv=3*' \
+      'bdist=${1:-/dist}' \
+      'sdist=${bdist}/${SDIST_FILE:-*.tar.gz}' \
       'if [[ -n ${SDIST_SPEC} ]]; then sdist=${SDIST_SPEC}; fi' \
       'if [[ -n ${PLAT_PYVER} ]]; then platv=${PLAT_PYVER//./}; fi' \
       'for pip in /opt/python/cp${platv}-cp${platv}*/bin/pip; do' \
@@ -31,7 +33,7 @@ RUN printf '%s\n' '#!/bin/bash' 'set -e' '' 'platv=3*' \
       'done' \
       'for whl in *.whl; do' \
       '  auditwheel repair ${whl} \' \
-      '    -w ${dist} \' \
+      '    -w ${bdist} \' \
       '    --plat ${AUDITWHEEL_PLAT} \' \
       '    ${ELF_PATCHER:+--elf-patcher ${ELF_PATCHER}}' \
       'done' \
